@@ -1,0 +1,50 @@
+﻿Build started 11/10/2014 2:41:08 PM.
+     1>Project "C:\Users\PANAGIOTIS\Documents\GitHub\panagiotis-arx\ConsoleApplication1\ConsoleApplication1.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TC /analyze- /errorReport:prompt main.c
+         main.c
+     1>c:\users\panagiotis\documents\github\panagiotis-arx\consoleapplication1\main.c(26): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(218) : see declaration of 'fopen'
+     1>c:\users\panagiotis\documents\github\panagiotis-arx\consoleapplication1\main.c(27): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(218) : see declaration of 'fopen'
+     1>c:\users\panagiotis\documents\github\panagiotis-arx\consoleapplication1\main.c(28): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(218) : see declaration of 'fopen'
+     1>c:\users\panagiotis\documents\github\panagiotis-arx\consoleapplication1\main.c(29): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(218) : see declaration of 'fopen'
+     1>c:\users\panagiotis\documents\github\panagiotis-arx\consoleapplication1\main.c(31): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(290) : see declaration of 'scanf'
+     1>c:\users\panagiotis\documents\github\panagiotis-arx\consoleapplication1\main.c(32): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(218) : see declaration of 'fopen'
+     1>c:\users\panagiotis\documents\github\panagiotis-arx\consoleapplication1\main.c(35): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(290) : see declaration of 'scanf'
+     1>c:\users\panagiotis\documents\github\panagiotis-arx\consoleapplication1\main.c(71): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(218) : see declaration of 'fopen'
+     1>c:\users\panagiotis\documents\github\panagiotis-arx\consoleapplication1\main.c(78): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(218) : see declaration of 'fopen'
+     1>c:\users\panagiotis\documents\github\panagiotis-arx\consoleapplication1\main.c(97): warning C4013: 'system' undefined; assuming extern returning int
+     1>c:\users\panagiotis\documents\github\panagiotis-arx\consoleapplication1\main.c(107): warning C4101: 'before_char' : unreferenced local variable
+     1>c:\users\panagiotis\documents\github\panagiotis-arx\consoleapplication1\main.c(176): warning C4101: 'm' : unreferenced local variable
+     1>c:\users\panagiotis\documents\github\panagiotis-arx\consoleapplication1\main.c(105): warning C4101: 'charakthras' : unreferenced local variable
+     1>c:\users\panagiotis\documents\github\panagiotis-arx\consoleapplication1\main.c(693): warning C4101: 'before_char' : unreferenced local variable
+     1>c:\users\panagiotis\documents\github\panagiotis-arx\consoleapplication1\main.c(730): warning C4101: 'name' : unreferenced local variable
+     1>c:\users\panagiotis\documents\github\panagiotis-arx\consoleapplication1\main.c(736): warning C4101: 'nowstate' : unreferenced local variable
+     1>c:\users\panagiotis\documents\github\panagiotis-arx\consoleapplication1\main.c(728): warning C4101: 'posostoepitixias' : unreferenced local variable
+     1>c:\users\panagiotis\documents\github\panagiotis-arx\consoleapplication1\main.c(734): warning C4101: 'reality' : unreferenced local variable
+     1>c:\users\panagiotis\documents\github\panagiotis-arx\consoleapplication1\main.c(752): warning C4101: 'm' : unreferenced local variable
+     1>c:\users\panagiotis\documents\github\panagiotis-arx\consoleapplication1\main.c(698): warning C4101: 'j' : unreferenced local variable
+     1>c:\users\panagiotis\documents\github\panagiotis-arx\consoleapplication1\main.c(691): warning C4101: 'charakthras' : unreferenced local variable
+     1>c:\users\panagiotis\documents\github\panagiotis-arx\consoleapplication1\main.c(1295): warning C4101: 'before_char' : unreferenced local variable
+     1>c:\users\panagiotis\documents\github\panagiotis-arx\consoleapplication1\main.c(1332): warning C4101: 'name' : unreferenced local variable
+     1>c:\users\panagiotis\documents\github\panagiotis-arx\consoleapplication1\main.c(1338): warning C4101: 'nowstate' : unreferenced local variable
+     1>c:\users\panagiotis\documents\github\panagiotis-arx\consoleapplication1\main.c(1330): warning C4101: 'posostoepitixias' : unreferenced local variable
+     1>c:\users\panagiotis\documents\github\panagiotis-arx\consoleapplication1\main.c(1336): warning C4101: 'reality' : unreferenced local variable
+     1>c:\users\panagiotis\documents\github\panagiotis-arx\consoleapplication1\main.c(1354): warning C4101: 'm' : unreferenced local variable
+     1>c:\users\panagiotis\documents\github\panagiotis-arx\consoleapplication1\main.c(1300): warning C4101: 'j' : unreferenced local variable
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\PANAGIOTIS\Documents\GitHub\panagiotis-arx\ConsoleApplication1\Debug\ConsoleApplication1.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\PANAGIOTIS\Documents\GitHub\panagiotis-arx\ConsoleApplication1\Debug\ConsoleApplication1.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\PANAGIOTIS\Documents\GitHub\panagiotis-arx\ConsoleApplication1\Debug\ConsoleApplication1.lib" /MACHINE:X86 Debug\main.obj
+         ConsoleApplication1.vcxproj -> C:\Users\PANAGIOTIS\Documents\GitHub\panagiotis-arx\ConsoleApplication1\Debug\ConsoleApplication1.exe
+     1>Done Building Project "C:\Users\PANAGIOTIS\Documents\GitHub\panagiotis-arx\ConsoleApplication1\ConsoleApplication1.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.40
