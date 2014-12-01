@@ -21,7 +21,7 @@ int arrayy[32][3]={{3,0,0},{3,0,0},{3,0,0},{3,0,0},{3,0,0},{3,0,0},
 {3,0,0},{3,0,0},{3,0,0},{3,0,0},{3,0,0},{3,0,0},
 {3,0,0},{3,0,0},{3,0,0},{3,0,0},{3,0,0},{3,0,0},{3,0,0},{3,0,0}};
 int index[5]={0,0,0,0,0};
-
+char tournament[50][2];
 
 int main()
 {
@@ -33,21 +33,31 @@ int main()
     FILE*output3; 
     FILE*output5;
     FILE*output6;
+    FILE*output7;
+    FILE*input2;
+    FILE*input3;
     
     
     char  name[35];
     int epilogi=0;
+    int f=1;
+    int e=0;
+    char q;
+    char m;
+    int w=0;
+    int a=0;
     output2=fopen("correlativeoutput.txt","w");
     output1 = fopen("exodos1bit.txt","w");
     output3=fopen("apotelesmata.txt","w");
 	output4=fopen("exodos2bit.txt","w");
 	output5=fopen("yehpatexit.txt","w");
 	output6=fopen("yehpatt.txt","w");
+	output7=fopen("tournamentexit.txt","w");
 	printf("dose to onoma tou arxeiou: ");   // giana ani3eis to onoma arxiou p s dia o xristis, to arxio na ine sto idio directory
      scanf( "%s" ,name); 
      input_file = fopen(name,"r");  
      
-     printf("\n  pliktrologa 1 gia ton 1bit, 2 gia ton correlative ,3 kai gia ta tria,4 gia 2 bit,5 gia yeh patt:");
+     printf("\n  pliktrologa 1 gia ton 1bit, 2 gia ton correlative ,3 kai gia ta tessera,4 gia 2 bit,5 gia yeh patt,6 gia tournament:");
      scanf("%d",&epilogi);
     
      
@@ -95,9 +105,15 @@ int main()
 	   input_file=fopen(name,"r");
 	   pred2bit(input_file,output4,output3);
 	   
-         fclose(output3);
+        
 		 fclose(output4);
        fclose(input_file);
+        input_file=fopen(name,"r");
+       yehpat(input_file,output5,output3,output6);
+        fclose(output3);
+         fclose(input_file);
+          fclose(output5);
+            fclose(output6);
 
        }
 	 else
@@ -121,7 +137,94 @@ int main()
              fclose(output5);
              fclose(output6);
              fclose(input_file);  
-             }     
+             }  
+         else
+         if(epilogi==6)
+         {
+                 
+                  pred1bit(input_file,output1,output3);
+                  fclose(input_file);
+                  fclose(output1);
+    
+                  input_file = fopen(name,"r");
+                  correlative(input_file,output2,output3);
+                  fclose(output2);
+                  fclose(input_file);
+                 input2=fopen("exodos1bit.txt","r");
+               input3=fopen("correlativeoutput.txt","r");
+                  while(f==1)
+                  {
+                    for(w=0; w<50; w++)
+                    {
+                       q=fgetc(input2);
+                       m=fgetc(input3);      
+                       if(q==EOF)
+                       {
+                                f=0;
+                                }
+                       if(q!='\n')
+                       {         
+                       tournament[w][0]=q;
+                       }
+                     
+                        
+                       if(m==EOF)
+                       {
+                          f=0;
+                          }
+                          if(m!='\n')
+                          {
+                          tournament[w][1]=m;
+                          }
+                          
+                          if(m=='\n'&&q=='\n')
+                          {
+                           w--;
+                           }          
+                          
+                          }
+                        
+                  
+                      
+                     while(a<50)
+                     {   
+                         
+                         if(e==1)
+                         {fprintf(output7,"correlative\n");
+                          fprintf(output7,"%c\n",tournament[a][1]);
+                          
+                          if(tournament[a][1]=='0' && tournament[a+1][1]=='0')
+                          {
+                              e=0;
+                              a=a+2;
+                              }
+                              else
+                              {a++;}
+                      
+                              
+                           }
+                           else                     
+                         if(e==0)
+                         { fprintf(output7,"1bit\n");
+                           fprintf(output7,"%c\n",tournament[a][0]);
+                                
+                        if(tournament[a][0]=='0'&& tournament[a+1][0]=='0')
+                        { 
+                          
+                          e=1;
+                          a+2;
+                          }
+                          else
+                          {   a++; }
+                         
+                          }
+                                                                                                    
+                  } 
+                  } 
+                  fclose(input2);
+                  fclose(input3);
+                  fclose(output7);
+                  }
   	system("PAUSE");
  } 
  
@@ -257,7 +360,7 @@ int charakthras;
                        if(g==8){
                           if (t==0&&u!=5&&r==0){      
                          epanaliyivrogxou++;}
-                                
+                     fprintf(output_c,"1\n");  
                          
                        epitixes++;
 					 
@@ -278,7 +381,7 @@ int charakthras;
                      
                       
                       provleyi=1; 
-                      
+                        fprintf(output_c,"1\n"); 
                          epitixes++;
                           
                          if(t>0){
@@ -340,32 +443,21 @@ int charakthras;
 						{ 
                                     epan=epan-1;
                                     
-                          fprintf(output_c,"\n inner loop");
+                         
                           
                         
                      deuteroinner++;
                      
                      
                     
-                     fprintf(output_c,"\n to branchh me dieuthinsi :");
-                      for(s=0;  s<8; s++)
-                      {
-                         fprintf(output_c,"%c",a[s]); 
-                      }
-                         fprintf(output_c,"\n");
-                       fprintf(output_c,"%d",deuteroinner);
-                          fprintf(output_c,"\nprovleyi                Taken");  
-                            fprintf(output_c,"\nreality1            Taken ");
-                       fprintf(output_c,"\n pred1outerT                 Taken");
-                         fprintf(output_c,"\n pred2outerNT                Taken");
+                      fprintf(output_c,"1\n"); 
                        
-                         fprintf(output_c,"\n\n epitixies %d",deuteroinner);
-                          fprintf(output_c,"/ %d",deuteroinner);
+                    
                           totalhits=totalhits+1;
                           totalepanaliyis=totalepanaliyis+1;
                           
                             
-                                   fprintf(output_c,"\n");  
+                                  
                               pred1outerT=1;
                              pred2outerNT=1; 
                              provleyi=1;
@@ -373,24 +465,17 @@ int charakthras;
                      
                         
                          epitixes++;
-                          fprintf(output_c,"\n"); 
+                         
 						            
                                     
-                                     fprintf(output_c,"\n  exi san inner loop to branch :");
-                        for(s=0;  s<8; s++)
-                      {
-                         fprintf(output_c,"%c",b[s]); 
-                      }
+                                    
                       
                         
                          epanaliyivrogxou=1;
                          if(reality1==1)
                          {
-                              fprintf(output_c,"\n %d",epanaliyivrogxou);   
-                              fprintf(output_c,"\nprovleyi        NoTTaken");        
-                            fprintf(output_c,"\nreality2            Taken ");             
-                           fprintf(output_c,"\npred1innerT         Taken ");
-                         fprintf(output_c,"\npre2innerT         Taken ");
+                                 fprintf(output_c,"1\n");           
+                          
                         
                          pred1innerT=1;
                          pred2innerNT=1;
@@ -413,11 +498,7 @@ int charakthras;
                               if(pred1innerT==1&&pred2innerNT==1)
                            {
                            
-                           fprintf(output_c,"\n %d",epanaliyivrogxou);
-                            fprintf(output_c,"\n provleyi            Taken");
-                             fprintf(output_c,"\nreality2            Taken ");
-                         fprintf(output_c,"\npred1innerT         Taken ");
-                         fprintf(output_c,"\npred2innerT         Taken ");
+                             fprintf(output_c,"1\n"); 
                            hits++;
                             epitixes++;
                          
@@ -429,18 +510,13 @@ int charakthras;
                          epanaliyivrogxou++;
                          }  
                          } 
-                          fprintf(output_c,"\n %d",epanaliyivrogxou);
-                              fprintf(output_c,"\n provleyi            Taken");
-                           fprintf(output_c,"\nreality2            NotTaken ");
-                         fprintf(output_c,"\npred1innerT         NotTaken ");
-                          fprintf(output_c,"\npred2innerT         Taken ");
-                          fprintf(output_c,"\n\n epitixies: %d",hits);
-                          fprintf(output_c,"/ %d",epanaliyivrogxou);
+                            fprintf(output_c,"0\n"); 
+                           
                           totalhits=totalhits+hits;
                           totalepanaliyis=totalepanaliyis+epanaliyivrogxou;
                           hits=0;
                          
-                                   fprintf(output_c,"\n");   
+                                    
                                    pred1innerT=0;
                                    pred2innerNT=1;
                                     }       
@@ -448,47 +524,29 @@ int charakthras;
                          {
                             
                              
-                             fprintf(output_c,"\n to branchh me dieuthinsi :");
-                      for(s=0;  s<8; s++)
-                      {
-                         fprintf(output_c,"%c",a[s]); 
-                      }
-                         fprintf(output_c,"\n");
+                             
                      epanaliyivrogxou=1;
                           
-                          fprintf(output_c,"\n %d",epanaliyivrogxou);
-                          fprintf(output_c,"\nprovleyi                Taken");
-                            fprintf(output_c,"\nreality1            Taken ");  
-                         fprintf(output_c,"\n predouter1T                 Taken");
-                         fprintf(output_c,"\n pred2outerNT                Taken");
+                             fprintf(output_c,"1\n"); 
                         hits++;
-                        fprintf(output_c,"\n\n epitixies: %d",hits);
-                          fprintf(output_c,"/ %d",epanaliyivrogxou);
+                       
                           totalhits=totalhits+hits;
                           totalepanaliyis=totalepanaliyis+epanaliyivrogxou;
                           hits=0;
                       
                          
-                                   fprintf(output_c,"\n");  
+                                   
                               pred1outerT=1;
                              pred2outerNT=1; 
                              provleyi=1;
                              reality1=1;
                              epitixes++;
                             
-                       fprintf(output_c,"\n  exi san inner loop to branch :");
-                        for(s=0;  s<8; s++)
-                      {
-                         fprintf(output_c,"%c",b[s]); 
-                      }
+                      
                       
                         
                          
-                        fprintf(output_c,"\n %d",epanaliyivrogxou);
-                        fprintf(output_c,"\nprovleyi                Taken"); 
-                            fprintf(output_c,"\nreality2           Taken "); 
-                        fprintf(output_c,"\n pred1innerT                 Taken");
-                         fprintf(output_c,"\n pred2innerNT                Taken");
+                          fprintf(output_c,"1\n"); 
                          hits++;
                         
                           epitixes++;
@@ -498,26 +556,14 @@ int charakthras;
                            
                         for(s=1; s<epan; s++)
                         {
-                               fprintf(output_c,"\n %d",epanaliyivrogxou);
-                               fprintf(output_c,"\nprovleyi                Taken"); 
-                         fprintf(output_c,"\nreality2                 Taken"); 
-                        fprintf(output_c,"\n pred1innerT                 Taken");
-                         fprintf(output_c,"\n pred2innerNT                Taken");
+                                  fprintf(output_c,"1\n"); 
                          hits++;
                          
                          epitixes++;
 						
                          epanaliyivrogxou++;
                          }   
-                         fprintf(output_c,"\n %d",epanaliyivrogxou);
-                          fprintf(output_c,"\nprovleyi                Taken");  
-                         fprintf(output_c,"\nreality2                 NotTaken"); 
-                         
-                          fprintf(output_c,"\n pred1innerT                 NotTaken");
-                         fprintf(output_c,"\n pred2innerNT                Taken");
-                       
-                         fprintf(output_c,"\n\n epitixies:  %d",hits);
-                          fprintf(output_c,"/ %d",epanaliyivrogxou);
+                            fprintf(output_c,"0\n"); 
                           totalhits=totalhits+hits;
                           totalepanaliyis=totalepanaliyis+epanaliyivrogxou;
                           hits=0;
@@ -525,7 +571,7 @@ int charakthras;
                          pred1innerT=1;
                          pred2innerNT=1;
                          reality2=0;
-                                   fprintf(output_c,"\n");   
+                                    
                                     
                              }
                     
@@ -561,46 +607,33 @@ int charakthras;
                    
                        if(w!=0 && ff!=1)
                        {
-                        
-                       
+      
+                            fprintf(output_c,"0\n"); 
                        }
                        if(w==0 && ff==1 && inner==0)
                        {
                               
-                         
-                         epitixes++;
+                           fprintf(output_c,"1\n"); 
+                                   epitixes++;
                          epanaliyivrogxou++;
                         for(s=1; s<epan; s++)
                         {
-                              
+                             fprintf(output_c,"1\n");   
                          epitixes++; 
                          epanaliyivrogxou++;    
                          } 
-                          
+                           fprintf(output_c,"0\n"); 
                          xx=1;
                          }
                          
                         if(w==0 &&ff==1&&inner==1)
                         {     
                               
-                              fprintf(output_c,"\n"); 
-                               fprintf(output_c,"\n");                     
-                      fprintf(output_c,"to branchh me dieuthinsi :");
-                      for(s=0;  s<8; s++)
-                      {
-                         fprintf(output_c,"%c",a[s]); 
-                      }
+                              
                                  deuteroinner++;
-                           fprintf(output_c,"\n %d", deuteroinner);
-                            fprintf(output_c,"\n provleyi                Taken");
-                            fprintf(output_c,"\n reality1            NotTaken "); 
-                           fprintf(output_c,"\n predouter1T                 Taken");
-                         fprintf(output_c,"\n pred2outerNT                NotTaken");
-                         fprintf(output_c,"\n\n epitixies %d",deuteroinner-1);
-                          fprintf(output_c,"/ %d",deuteroinner);
-                        
+                         
                             
-                           fprintf(output_c,"\n"); 
+                              fprintf(output_c,"0\n"); 
 		    
 						  
                          u=1;
@@ -613,20 +646,24 @@ int charakthras;
                        if(w!=0 && ff==1)
                        {
                            
-                      
+                     
+                          fprintf(output_c,"0\n"); 
                          epitixes++;
-						
+					
+						    fprintf(output_c,"1\n"); 
                          epanaliyivrogxou++;
                         for(s=1; s<epan; s++)
                         {
                               
+                                  fprintf(output_c,"1\n"); 
                          epitixes++;
                          
 						 
                          epanaliyivrogxou++;    
                          } 
                           
-                       
+                        
+                           fprintf(output_c,"0\n"); 
                          yy=1;     
                               
                        }
@@ -642,7 +679,8 @@ int charakthras;
                         if(xx!=1)
                         {
                                  if(u==0){
-                        
+                   
+                            fprintf(output_c,"0\n"); 
                           }
                           else{
                                u=0;
@@ -657,7 +695,8 @@ int charakthras;
                       else
                       {
                           
-                       
+                      
+                          fprintf(output_c,"0\n"); 
                         kkk=0;
                         } 
                         }    
@@ -693,13 +732,7 @@ int charakthras;
    }  
    
   
-    fprintf(output_c,"\n");   
-      fprintf(output_c,"branches:");
-      fprintf(output_c,"%d",branches);
-      
-      fprintf(output_c,"\n sinolikes epitixes");
-      fprintf(output_c,"\n %d",epitixes);
-      fprintf(output_c,"/ %d",line/9);
+   
       fprintf(out2,"\n to correlative exi ta exis apotelesmata:");
       fprintf(out2,"\nbranhes : %d\n",branches);
       fprintf(out2,"\n sinolikes epitixies:");
@@ -707,8 +740,7 @@ int charakthras;
       fprintf(out2,"\n sinolikes epitixies sta innerloops: %d",totalhits);
       fprintf(out2,"/ %d",totalepanaliyis);
       
-      fprintf(output_c,"\n sinolikes epitixies sta innerloops: %d",totalhits);
-      fprintf(output_c,"/ %d",totalepanaliyis);
+     
       
 
 }
@@ -834,10 +866,7 @@ void pred1bit(FILE * inputt,FILE * output, FILE * out1)
                           if (t==0&&u!=5&&r==0){      
                          epanaliyivrogxou++;}
                                 
-                         fprintf(output,"\n %d",epanaliyivrogxou);
-                         fprintf(output,"                 Taken");
-                       fprintf(output,"           Taken");
-                       fprintf(output,"           Taken");
+                            fprintf(output,"1\n"); 
                        epitixes++;
 					 
                       epanaliyivrogxou++;
@@ -857,22 +886,7 @@ void pred1bit(FILE * inputt,FILE * output, FILE * out1)
                      
                       
                       provleyi=1; 
-                      fprintf(output,"\n");                    
-                      fprintf(output,"to branchh me dieuthinsi :");
-                      for(s=0;  s<8; s++)
-                      {
-                         fprintf(output,"%c",a[s]); 
-                      }
-                         fprintf(output,"\n");
-                         epanaliyivrogxou++;
-                         fprintf(output,"epanaliyivrogxou ");
-                         fprintf(output,"   provleyi");
-                         fprintf(output,"     drasi");
-                         fprintf(output,"     nea katastasi");
-                         fprintf(output,"\n %d",epanaliyivrogxou);
-                         fprintf(output,"                 Taken");
-                         fprintf(output,"           Taken");
-                         fprintf(output,"           Taken");
+                      fprintf(output,"1\n"); 
                          epanaliyivrogxou++;
                          epitixes++;
                           
@@ -935,128 +949,60 @@ void pred1bit(FILE * inputt,FILE * output, FILE * out1)
 						{
                                     epan=epan-1;
                                     
-                          fprintf(output,"\n inner loop");
+                       
                           
                         
                      deuteroinner++;
                      
                      
                     
-                     fprintf(output,"\n to branchh me dieuthinsi :");
-                      for(s=0;  s<8; s++)
-                      {
-                         fprintf(output,"%c",a[s]); 
-                      }
-                         fprintf(output,"\n");
-                       
-                         fprintf(output,"epanaliyivrogxou ");
-                         fprintf(output,"   provleyi");
-                         fprintf(output,"     drasi");
-                         fprintf(output,"     nea katastasi");
-                         fprintf(output,"\n %d",deuteroinner);
-                         fprintf(output,"                 Taken");
-                         fprintf(output,"              Taken");
-                         fprintf(output,"              Taken"); 
+                          fprintf(output,"1\n"); 
                          epitixes++;
-                          fprintf(output,"\n"); 
+                          
 						            
                                     
-                                     fprintf(output,"\n  exi san inner loop to branch :");
-                        for(s=0;  s<8; s++)
-                      {
-                         fprintf(output,"%c",b[s]); 
-                      }
-                      
-                         fprintf(output,"\n");
-                         epanaliyivrogxou=1;
-                         fprintf(output,"epanaliyivrogxou ");
-                         fprintf(output,"   provleyi");
-                         fprintf(output,"     drasi");
-                         fprintf(output,"     nea katastasi");
-                         
-                        fprintf(output,"\n %d",epanaliyivrogxou);
-                         fprintf(output,"                 NotTaken");
-                         fprintf(output,"              Taken");
-                         fprintf(output,"              Taken");  
+                          fprintf(output,"1\n"); 
 						 epanaliyivrogxou++;
 						
                         
                            
                         for(s=1; s<epan; s++)
                         {
-                               fprintf(output,"\n %d",epanaliyivrogxou);
-                         fprintf(output,"                 Taken");
-                         fprintf(output,"              Taken");
-                         fprintf(output,"              Taken");  
+                              fprintf(output,"1\n");   
                          epitixes++;
 						
                          epanaliyivrogxou++;
                          }   
-                          fprintf(output,"\n %d",epanaliyivrogxou);
-                         fprintf(output,"                 Taken");
-                         fprintf(output,"              NotTaken");
-                         fprintf(output,"              NotTaken");  
-                                   fprintf(output,"\n");   
+                           fprintf(output,"0\n"); 
+                                  
                                     }       
                          if(inner==0)
                          {
                                   
-                           fprintf(output,"\n inner loop");
+                          
                      epanaliyivrogxou=1;
                      
                      
                     
-                     fprintf(output,"\n to branchh me dieuthinsi :");
-                      for(s=0;  s<8; s++)
-                      {
-                         fprintf(output,"%c",a[s]); 
-                      }
-                         fprintf(output,"\n");
-                       
-                         fprintf(output,"epanaliyivrogxou ");
-                         fprintf(output,"   provleyi");
-                         fprintf(output,"     drasi");
-                         fprintf(output,"     nea katastasi");
-                         fprintf(output,"\n %d",epanaliyivrogxou);
-                         fprintf(output,"                 Taken");
-                         fprintf(output,"              Taken");
-                         fprintf(output,"              Taken"); 
+                     fprintf(output,"1\n"); 
                          epitixes++;
-                          fprintf(output,"\n"); 
-						            
-                         fprintf(output,"\n  exi san inner loop to branch :");
-                        for(s=0;  s<8; s++)
-                      {
-                         fprintf(output,"%c",b[s]); 
-                      }
-                      
-                         fprintf(output,"\n");
+                         
                          if(provleyi==0)
                          {
                                         }
-                         fprintf(output,"epanaliyivrogxou ");
-                         fprintf(output,"   provleyi");
-                         fprintf(output,"     drasi");
-                         fprintf(output,"     nea katastasi");
+                        
                         
 						
                         
                            
                         for(s=0; s<epan; s++)
                         {
-                               fprintf(output,"\n %d",epanaliyivrogxou);
-                         fprintf(output,"                 Taken");
-                         fprintf(output,"              Taken");
-                         fprintf(output,"              Taken");  
+                               fprintf(output,"1\n"); 
                          epitixes++;
 						
                          epanaliyivrogxou++;
                          }   
-                          fprintf(output,"\n %d",epanaliyivrogxou);
-                         fprintf(output,"                 Taken");
-                         fprintf(output,"              NotTaken");
-                         fprintf(output,"              NotTaken");      
-                          fprintf(output,"\n");      
+                           fprintf(output,"0\n"); 
                           epanaliyivrogxou=1; 
                          }
                     
@@ -1094,64 +1040,30 @@ void pred1bit(FILE * inputt,FILE * output, FILE * out1)
                        if(w!=0 && ff!=1)
                        {
                         
-                        fprintf(output,"\n %d",epanaliyivrogxou);
-                         fprintf(output,"                 Taken");
-                       fprintf(output,"           notTaken");
-                       fprintf(output,"           notTaken");
-                        fprintf(output,"\n"); 
+                         fprintf(output,"0\n"); 
                        }
                        if(w==0 && ff==1 && inner==0)
                        {
                               
-                         fprintf(output,"\n to branchh me dieuthinsi :");
-                      for(s=0;  s<8; s++)
-                      {
-                         fprintf(output,"%c",b[s]); 
-                      }
-                         fprintf(output,"\n");
-                         epanaliyivrogxou=1;
-                         fprintf(output,"epanaliyivrogxou ");
-                         fprintf(output,"   provleyi");
-                         fprintf(output,"     drasi");
-                         fprintf(output,"     nea katastasi");
-                         fprintf(output,"\n %d",epanaliyivrogxou);
-                         fprintf(output,"                 Taken");
-                         fprintf(output,"              Taken");
-                         fprintf(output,"              Taken");  
+                          fprintf(output,"1\n"); 
                          epitixes++;
                          epanaliyivrogxou++;
                         for(s=1; s<epan; s++)
                         {
-                              fprintf(output,"\n %d",epanaliyivrogxou);
-                         fprintf(output,"                 Taken");
-                         fprintf(output,"              Taken");
-                         fprintf(output,"              Taken");  
+                              fprintf(output,"1\n"); 
                          epitixes++; 
                          epanaliyivrogxou++;    
                          } 
-                          fprintf(output,"\n %d",epanaliyivrogxou);
-                         fprintf(output,"                 Taken");
-                         fprintf(output,"              NotTaken");
-                         fprintf(output,"              NotTaken"); 
-                          fprintf(output,"\n"); 
+                           fprintf(output,"0\n"); 
                          xx=1;
                          }
                          
                         if(w==0 &&ff==1&&inner==1)
                         {     
                               
-                              fprintf(output,"\n");                    
-                      fprintf(output,"to branchh me dieuthinsi :");
-                      for(s=0;  s<8; s++)
-                      {
-                         fprintf(output,"%c",a[s]); 
-                      }
+                             
                                 epanaliyivrogxou++;
-                           fprintf(output,"\n %d",epanaliyivrogxou);
-                         fprintf(output,"                 Taken");
-                         fprintf(output,"           notTaken");
-                         fprintf(output,"           notTaken");   
-                           fprintf(output,"\n"); 
+                            fprintf(output,"0\n"); 
 		    
 						  
                          u=1;
@@ -1162,47 +1074,24 @@ void pred1bit(FILE * inputt,FILE * output, FILE * out1)
                            
                        if(w!=0 && ff==1)
                        {
-                           fprintf(output,"\n %d",epanaliyivrogxou);
-                         fprintf(output,"                 Taken");
-                       fprintf(output,"           notTaken");
-                       fprintf(output,"           notTaken");
-                        fprintf(output,"\n"); 
-                        fprintf(output,"\n to branchh me dieuthinsi :");
+                            fprintf(output,"0\n"); 
 						
                        
-                      for(s=0;  s<8; s++)
-                      {
-                         fprintf(output,"%c",b[s]); 
-                      }
-                         fprintf(output,"\n");
+                     
                          epanaliyivrogxou=1;
-                         fprintf(output,"epanaliyivrogxou ");
-                         fprintf(output,"   provleyi");
-                         fprintf(output,"     drasi");
-                         fprintf(output,"     nea katastasi");
-                         fprintf(output,"\n %d",epanaliyivrogxou);
-                         fprintf(output,"                 Taken");
-                         fprintf(output,"              Taken");
-                         fprintf(output,"              Taken");  
+                          fprintf(output,"1\n"); 
                          epitixes++;
 						
                          epanaliyivrogxou++;
                         for(s=1; s<epan; s++)
                         {
-                              fprintf(output,"\n %d",epanaliyivrogxou);
-                         fprintf(output,"                 Taken");
-                         fprintf(output,"              Taken");
-                         fprintf(output,"              Taken");
+                             fprintf(output,"1\n"); 
                          epitixes++;
                          
 						 
                          epanaliyivrogxou++;    
                          } 
-                          fprintf(output,"\n %d",epanaliyivrogxou);
-                         fprintf(output,"                 Taken");
-                         fprintf(output,"              NotTaken");
-                         fprintf(output,"              NotTaken");   
-						  fprintf(output,"\n"); 
+                          fprintf(output,"0\n"); 
                        
                          yy=1;     
                               
@@ -1219,23 +1108,7 @@ void pred1bit(FILE * inputt,FILE * output, FILE * out1)
                         if(xx!=1)
                         {
                                  if(u==0){
-                        fprintf(output,"\n");                    
-                      fprintf(output,"to branchh me dieuthinsi :");
-                      for(s=0;  s<8; s++)
-                      {
-                         fprintf(output,"%c",a[s]); 
-                      }
-                         fprintf(output,"\n");
-                         epanaliyivrogxou=1;
-                         fprintf(output,"epanaliyivrogxou ");
-                         fprintf(output,"   provleyi");
-                         fprintf(output,"     drasi");
-                         fprintf(output,"     nea katastasi");
-                         fprintf(output,"\n %d",epanaliyivrogxou);
-                         fprintf(output,"                 Taken");
-                         fprintf(output,"           notTaken");
-                         fprintf(output,"           notTaken");   
-                          fprintf(output,"\n"); 
+                        fprintf(output,"0\n"); 
                           }
                           else{
                                u=0;
@@ -1249,23 +1122,9 @@ void pred1bit(FILE * inputt,FILE * output, FILE * out1)
                              }
                       else
                       {
-                          fprintf(output,"\n");                    
-                      fprintf(output,"to branchh me dieuthinsi :");
-                      for(s=0;  s<8; s++)
-                      {
-                         fprintf(output,"%c",b[s]); 
-                      }
-                         fprintf(output,"\n");
+                          
                          epanaliyivrogxou=1;
-                         fprintf(output,"epanaliyivrogxou ");
-                         fprintf(output,"   provleyi");
-                         fprintf(output,"     drasi");
-                         fprintf(output,"     nea katastasi");
-                         fprintf(output,"\n %d",epanaliyivrogxou);
-                         fprintf(output,"                 Taken");
-                         fprintf(output,"           notTaken");
-                         fprintf(output,"           notTaken");    
-						  fprintf(output,"\n"); 
+                          fprintf(output,"0\n"); 
                        
                         kkk=0;
                         } 
@@ -1302,13 +1161,7 @@ void pred1bit(FILE * inputt,FILE * output, FILE * out1)
    }  
    
   
-    fprintf(output,"\n");   
-      fprintf(output,"branches:");
-      fprintf(output,"%d",branches);
-      
-      fprintf(output,"\n sinolikes epitixes");
-      fprintf(output,"\n %d",epitixes);
-      fprintf(output,"/ %d",line/9);
+   
       
       fprintf(out1,"\n to 1bit exei ta exis apotelesmata:");
       fprintf(out1,"\nbranhes : %d\n",branches);
@@ -2620,6 +2473,14 @@ void yehpat(FILE * inputt1,FILE * output4, FILE * out4,FILE * output5)
       
       fprintf(output5,"\n sinolikes apotixies:");
       fprintf(output5,"\n %d  / %d \n",misses,line/9);
+      
+      fprintf(out4,"\n  yeh patt exei ta exis apotelesmata:");
+      fprintf(out4,"\nbranhes : %d\n",branches);
+      fprintf(out4,"\n sinolikes epitixies:");
+      fprintf(out4,"\n %d  / %d \n",epitixes,line/9);
+      
+      fprintf(out4,"\n sinolikes apotixies:");
+      fprintf(out4,"\n %d  / %d \n",misses,line/9);
 }
 
 void array(int prov)
@@ -3472,7 +3333,8 @@ void array(int prov)
                    }
                    index[4]=prov;
                    
-                   }           
+                   }  
+                          
                   
                   
                   
